@@ -58,7 +58,7 @@ clear
 
 echo "Installing Required Packages!"
 
-apt-get install git-core gnupg flex bison gperf build-essential \
+sudo apt-get install git-core gnupg flex bison gperf build-essential \
 zip curl zlib1g-dev libc6-dev libncurses5-dev x11proto-core-dev \
 libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
 libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool
