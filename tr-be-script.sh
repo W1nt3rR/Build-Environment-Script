@@ -79,12 +79,51 @@ read -p "Press [Enter] key to continue..."
 
 clear
 
+echo "Downloading and Configuring Android SDK!!"
+echo "Which version of linux are you using?"
+echo "[ 1 ] 32 bits"
+echo "[ 2 ] 64 bits"
+
+echo "Making sure unzip is installed"
+sudo apt-get install unzip
+read bits
+	if [[ "$bits" == "1" ]]; then
+		echo "Downloading SDK for 32bit Linux System"
+		wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20130522.zip
+		echo "Download Complete!!"
+		echo "Extracting"
+		unzip adt-bundle-linux-x86-20130522.zip
+		echo "Configuring"
+		cd ~/adt-bundle-linux-x64-20130522/tools
+		./configure
+		echo "Done!!"
+		
+	elif [[ "$bits" == "2" ]]; then
+		echo "Downloading SDK for 64bit Linux System"
+		wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130522.zip
+		echo "Download Complete!!"
+		echo "Extracting"
+		unzip adt-bundle-linux-x86_64-20130522.zip
+		echo "Configuring"
+		cd ~/adt-bundle-linux-x86_64-20130522/tools
+		./configure
+		echo "Done!!"
+fi
+
+read -p "Press [Enter] key to continue..."
+
+clear
+
 echo "Cleaning up downloaded shit!"
 rm Python-2.5.6.tgz
 rm Python-2.5.6
 rm make-3.81.tar.gz
 rm make-3.81
 rm jdk-6u45-linux-x64.bin
+rm adt-bundle-linux-x86-20130522
+rm adt-bundle-linux-x86-20130522.zip
+rm adt-bundle-linux-x86_64-20130522
+adt-bundle-linux-x86_64-20130522.zip
 read -p "Press [Enter] key to continue..."
 clear
 
