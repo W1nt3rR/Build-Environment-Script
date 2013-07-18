@@ -70,7 +70,6 @@ clear
 echo "Installing GIT!"
 
 sudo apt-get install git
-y
 
 echo "Installing ADB Drivers!"
 sudo apt-get install android-tools-adb
