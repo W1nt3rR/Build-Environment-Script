@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "Linux Build Environment Setup Automater Script."
+echo "TR Build Environment Setup Script"
 echo "Written by nolinuxnoparty."
 echo "Released under supervision of Team Radium."
 read -p "Press [Enter] key to continue..."
