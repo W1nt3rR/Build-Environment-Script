@@ -91,9 +91,11 @@ read bits
 		wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20130522.zip
 		echo "Download Complete!!"
 		echo "Extracting"
+		mkdir adt-bundle
+		mv adt-bundle-linux-x86-20130522.zip adt-bundle/adt-bundle-linux-x86-20130522.zip
 		unzip adt-bundle-linux-x86-20130522.zip
 		echo "Configuring"
-		cd ~/adt-bundle-linux-x64-20130522/tools
+		cd ~/adt-bundle/sdk/tools
 		./configure
 		echo "Done!!"
 		
@@ -102,6 +104,8 @@ read bits
 		wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130522.zip
 		echo "Download Complete!!"
 		echo "Extracting"
+		mkdir adt-bundle
+		mv adt-bundle-linux-x86_64-20130522.zip adt-bundle/adt-bundle-linux-x86-20130522.zip
 		unzip adt-bundle-linux-x86_64-20130522.zip
 		echo "Configuring"
 		cd ~/adt-bundle-linux-x86_64-20130522/tools
@@ -114,15 +118,14 @@ read -p "Press [Enter] key to continue..."
 clear
 
 echo "Cleaning up downloaded shit!"
-rm Python-2.5.6.tgz
-rm Python-2.5.6
-rm make-3.81.tar.gz
-rm make-3.81
-rm jdk-6u45-linux-x64.bin
-rm adt-bundle-linux-x86-20130522
-rm adt-bundle-linux-x86-20130522.zip
-rm adt-bundle-linux-x86_64-20130522
-adt-bundle-linux-x86_64-20130522.zip
+rm -rf Python-2.5.6.tgz
+rm -rf Python-2.5.6
+rm -rf make-3.81.tar.gz
+rm -rf make-3.81
+rm -rf jdk-6u45-linux-x64.bin
+rm -rf adt-bundle-linux-x86-20130522
+rm -rf adt-bundle-linux-x86-20130522.zip
+rm -rf adt-bundle-linux-x86_64-20130522
 read -p "Press [Enter] key to continue..."
 clear
 
