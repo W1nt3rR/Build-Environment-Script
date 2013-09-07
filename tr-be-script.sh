@@ -33,6 +33,19 @@ read -p "Press [Enter] key to continue..."
 
 clear
 
+echo "Installing CCache!"
+wget http://www.samba.org/ftp/ccache/ccache-3.1.9.tar.gz
+tar -xvzf ccache-3.1.9.tar.gz
+cd ccache-3.1.9
+./configure
+make -j${JOBS}
+sudo make install -j${JOBS}
+echo "export USE_CCACHE=1" >> ~/.bashrc
+read -p "Press [Enter] key to continue..."
+
+
+clear
+
 echo "Installing JDK 6!"
 wget  --no-check-certificate --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin"
 chmod +x jdk-6u45-linux-x64.bin
@@ -80,6 +93,9 @@ sudo apt-get install git
 
 echo "Installing ADB Drivers!"
 sudo apt-get install android-tools-adb
+sudo wget http://www.broodplank.net/51-android.rules /etc/udev/rules.d/51-android.rules
+sudo chmod 644 /etc/udev/rules.d/51-android.rules
+
 
 read -p "Press [Enter] key to continue..."
 
@@ -129,6 +145,8 @@ rm -f jdk-6u45-linux-x64.bin
 rm -Rf adt-bundle-linux-x86-20130522
 rm -f adt-bundle-linux-x86-20130522.zip
 rm -Rf adt-bundle-linux-x86_64-20130522
+rm -f ccache-3.1.9.tar.gz
+rm -Rf ccache-3.1.9
 read -p "Press [Enter] key to continue..."
 clear
 
