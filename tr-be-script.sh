@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export JOBS=`nproc`;
+
 clear
 echo "TR Build Environment Setup Script"
 echo "Written by nolinuxnoparty."
@@ -8,6 +11,9 @@ read -p "Press [Enter] key to continue..."
 clear
 
 echo "Entering Downloads Directory"
+if [ ! -d ~/Downloads ]; then
+  mkdir -p ~/Downloads
+fi
 cd ~/Downloads
 read -p "Press [Enter] key to continue..."
 clear
@@ -18,8 +24,8 @@ wget http://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz
 tar -xvzf Python-2.5.6.tgz
 cd Python-2.5.6
 ./configure --prefix=/usr/local/python2.5
-make
-sudo make install
+make -j${JOBS}
+sudo make install -j${JOBS}
 sudo ln -s /usr/local/python2.5/bin/python /usr/bin/python2.5
 cd ..
 
@@ -49,7 +55,7 @@ wget -o make.tar.gz http://ftp.gnu.org/gnu/make/make-3.81.tar.gz
 tar -xvzf make-3.81.tar.gz
 cd make-3.81
 ./configure
-sudo make install
+sudo make install -j${JOBS}
 cd ..
 
 read -p "Press [Enter] key to continue..."
@@ -61,7 +67,8 @@ echo "Installing Required Packages!"
 sudo apt-get install git-core gnupg flex bison gperf build-essential \
 zip curl zlib1g-dev libc6-dev libncurses5-dev x11proto-core-dev \
 libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
-libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool
+libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool \
+libqt4-gui libqt4-core
 
 read -p "Press [Enter] key to continue..."
 
@@ -118,14 +125,14 @@ read -p "Press [Enter] key to continue..."
 clear
 
 echo "Cleaning up downloaded shit!"
-rm -rf Python-2.5.6.tgz
-rm -rf Python-2.5.6
-rm -rf make-3.81.tar.gz
-rm -rf make-3.81
-rm -rf jdk-6u45-linux-x64.bin
-rm -rf adt-bundle-linux-x86-20130522
-rm -rf adt-bundle-linux-x86-20130522.zip
-rm -rf adt-bundle-linux-x86_64-20130522
+rm -f Python-2.5.6.tgz
+rm -Rf Python-2.5.6
+rm -f make-3.81.tar.gz
+rm -Rf make-3.81
+rm -f jdk-6u45-linux-x64.bin
+rm -Rf adt-bundle-linux-x86-20130522
+rm -f adt-bundle-linux-x86-20130522.zip
+rm -Rf adt-bundle-linux-x86_64-20130522
 read -p "Press [Enter] key to continue..."
 clear
 
