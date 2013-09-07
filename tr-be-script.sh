@@ -86,38 +86,34 @@ read -p "Press [Enter] key to continue..."
 clear
 
 echo "Downloading and Configuring Android SDK!!"
-echo "Which version of linux are you using?"
-echo "[ 1 ] 32 bits"
-echo "[ 2 ] 64 bits"
-
 echo "Making sure unzip is installed"
 sudo apt-get install unzip
-read bits
-	if [[ "$bits" == "1" ]]; then
-		echo "Downloading SDK for 32bit Linux System"
-		wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20130522.zip
-		echo "Download Complete!!"
-		echo "Extracting"
-		mkdir adt-bundle
-		mv adt-bundle-linux-x86-20130522.zip adt-bundle/adt-bundle-linux-x86-20130522.zip
-		unzip adt-bundle-linux-x86-20130522.zip
-		echo "Configuring"
-		cd ~/adt-bundle/sdk/tools
-		./configure
-		echo "Done!!"
-		
-	elif [[ "$bits" == "2" ]]; then
-		echo "Downloading SDK for 64bit Linux System"
-		wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130522.zip
-		echo "Download Complete!!"
-		echo "Extracting"
-		mkdir adt-bundle
-		mv adt-bundle-linux-x86_64-20130522.zip adt-bundle/adt-bundle-linux-x86-20130522.zip
-		unzip adt-bundle-linux-x86_64-20130522.zip
-		echo "Configuring"
-		cd ~/adt-bundle-linux-x86_64-20130522/tools
-		./configure
-		echo "Done!!"
+
+if [ `getconf LONG_BIT` = "64" ]
+then
+        echo "Downloading SDK for 64bit Linux System"
+	wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130522.zip
+	echo "Download Complete!!"
+	echo "Extracting"
+	mkdir adt-bundle
+	mv adt-bundle-linux-x86_64-20130522.zip adt-bundle/adt-bundle-linux-x86-20130522.zip
+	unzip adt-bundle-linux-x86_64-20130522.zip
+	echo "Configuring"
+	cd ~/adt-bundle-linux-x86_64-20130522/tools
+	./configure
+	echo "Done!!"
+else
+   	echo "Downloading SDK for 32bit Linux System"
+	wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20130522.zip
+	echo "Download Complete!!"
+	echo "Extracting"
+	mkdir adt-bundle
+	mv adt-bundle-linux-x86-20130522.zip adt-bundle/adt-bundle-linux-x86-20130522.zip
+	unzip adt-bundle-linux-x86-20130522.zip
+	echo "Configuring"
+	cd ~/adt-bundle/sdk/tools
+	./configure
+	echo "Done!!"
 fi
 
 read -p "Press [Enter] key to continue..."
