@@ -195,7 +195,7 @@ else
 	mkdir adt-bundle
 	mv adt-bundle-linux-x86-20130522.zip adt-bundle/adt_x86.zip
 	cd adt-bundle
-	unzip adt-bundle-linux-x86-20130522.zip
+	unzip adt_x86.zip
 	echo "Configuring"
 	cd sdk/tools
 	./configure
