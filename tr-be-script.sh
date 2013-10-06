@@ -179,10 +179,11 @@ then
 	echo "Download Complete!!"
 	echo "Extracting"
 	mkdir adt-bundle
-	mv adt-bundle-linux-x86_64-20130522.zip adt-bundle/adt-bundle-linux-x86-20130522.zip
-	unzip adt-bundle-linux-x86_64-20130522.zip
+	mv adt-bundle-linux-x86_64-20130522.zip adt-bundle/adt_x64.zip
+	cd adt-bundle
+	unzip adt-x64.zip
 	echo "Configuring"
-	cd ~/adt-bundle-linux-x86_64-20130522/tools
+	cd sdk/tools
 	./configure
 	echo "Done!!"
 else
@@ -192,10 +193,11 @@ else
 	echo "Download Complete!!"
 	echo "Extracting"
 	mkdir adt-bundle
-	mv adt-bundle-linux-x86-20130522.zip adt-bundle/adt-bundle-linux-x86-20130522.zip
+	mv adt-bundle-linux-x86-20130522.zip adt-bundle/adt_x86.zip
+	cd adt-bundle
 	unzip adt-bundle-linux-x86-20130522.zip
 	echo "Configuring"
-	cd ~/adt-bundle/sdk/tools
+	cd sdk/tools
 	./configure
 	echo "Done!!"
 fi
