@@ -2,11 +2,11 @@
 
 export JOBS=`nproc`;
 
-if [ $1 = "--auto" ]; then
+if [[ ${1} = "--auto" ]]; then
   export PARAM=-y
   export SKIP=1
 else
-  export PARAM
+  export PARAM=""
   export SKIP=0
 fi
 
@@ -15,7 +15,7 @@ echo "TR Build Environment Setup Script"
 echo "Written by nolinuxnoparty."
 echo "Released under supervision of Team Radium."
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -31,7 +31,7 @@ if [ ! -d ~/Downloads ]; then
 fi
 cd ~/Downloads
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -52,7 +52,7 @@ sudo make install -j${JOBS}
 sudo ln -s /usr/local/python2.5/bin/python /usr/bin/python2.5
 cd ..
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -70,7 +70,7 @@ cd ccache-3.1.9
 make -j${JOBS}
 sudo make install -j${JOBS}
 echo "export USE_CCACHE=1" >> ~/.bashrc
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -92,7 +92,7 @@ sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_45/bin
 sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/jdk1.6.0_45/bin/javadoc 1
 java -version
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -110,7 +110,7 @@ cd make-3.81
 sudo make install -j${JOBS}
 cd ..
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -127,7 +127,7 @@ libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
 libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool \
 libqt4-gui libqt4-core $PARAM
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -157,7 +157,7 @@ sudo wget http://www.broodplank.net/51-android.rules /etc/udev/rules.d/51-androi
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
 
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -202,7 +202,7 @@ else
 	echo "Done!!"
 fi
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
@@ -224,7 +224,7 @@ rm -Rf adt-bundle-linux-x86_64-20130522
 rm -f ccache-3.1.9.tar.gz
 rm -Rf ccache-3.1.9
 
-if [ $SKIP==1 ]; then
+if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
