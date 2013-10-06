@@ -153,7 +153,7 @@ echo
 echo "Installing ADB Drivers!"
 echo
 sudo apt-get install android-tools-adb $PARAM
-sudo wget http://www.broodplank.net/51-android.rules /etc/udev/rules.d/51-android.rules
+sudo wget -x http://www.broodplank.net/51-android.rules -P /etc/udev/rules.d/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
 
 
@@ -183,8 +183,8 @@ then
 	cd adt-bundle
 	unzip adt-x64.zip
 	echo "Configuring"
-	cd sdk/tools
-	./configure
+	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
+	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
 	echo "Done!!"
 else
         echo
@@ -197,8 +197,8 @@ else
 	cd adt-bundle
 	unzip adt_x86.zip
 	echo "Configuring"
-	cd sdk/tools
-	./configure
+	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
+	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
 	echo "Done!!"
 fi
 
