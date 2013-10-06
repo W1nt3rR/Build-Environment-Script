@@ -2,11 +2,24 @@
 
 export JOBS=`nproc`;
 
+if [ $1 = "--auto" ]; then
+  export PARAM=-y
+  export SKIP=1
+else
+  export PARAM
+  export SKIP=0
+fi
+
 clear
 echo "TR Build Environment Setup Script"
 echo "Written by nolinuxnoparty."
 echo "Released under supervision of Team Radium."
-read -p "Press [Enter] key to continue..."
+
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 
 clear
 
@@ -15,11 +28,17 @@ if [ ! -d ~/Downloads ]; then
   mkdir -p ~/Downloads
 fi
 cd ~/Downloads
-read -p "Press [Enter] key to continue..."
+
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
+
 clear
 
 echo "Installing Python!"
-sudo apt-get install build-essential gcc
+sudo apt-get install build-essential gcc $PARAM
 wget http://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz
 tar -xvzf Python-2.5.6.tgz
 cd Python-2.5.6
@@ -29,7 +48,11 @@ sudo make install -j${JOBS}
 sudo ln -s /usr/local/python2.5/bin/python /usr/bin/python2.5
 cd ..
 
-read -p "Press [Enter] key to continue..."
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 
 clear
 
@@ -41,7 +64,11 @@ cd ccache-3.1.9
 make -j${JOBS}
 sudo make install -j${JOBS}
 echo "export USE_CCACHE=1" >> ~/.bashrc
-read -p "Press [Enter] key to continue..."
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 
 
 clear
@@ -58,7 +85,11 @@ sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_45/bin
 sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/jdk1.6.0_45/bin/javadoc 1
 java -version
 
-read -p "Press [Enter] key to continue..."
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 
 clear
 
@@ -71,7 +102,11 @@ cd make-3.81
 sudo make install -j${JOBS}
 cd ..
 
-read -p "Press [Enter] key to continue..."
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 
 clear
 
@@ -81,29 +116,37 @@ sudo apt-get install git-core gnupg flex bison gperf build-essential \
 zip curl zlib1g-dev libc6-dev libncurses5-dev x11proto-core-dev \
 libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
 libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool \
-libqt4-gui libqt4-core
+libqt4-gui libqt4-core $PARAM
 
-read -p "Press [Enter] key to continue..."
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 
 clear
 
 echo "Installing GIT!"
 
-sudo apt-get install git
+sudo apt-get install git $PARAM
 
 echo "Installing ADB Drivers!"
-sudo apt-get install android-tools-adb
+sudo apt-get install android-tools-adb $PARAM
 sudo wget http://www.broodplank.net/51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
 
 
-read -p "Press [Enter] key to continue..."
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 
 clear
 
 echo "Downloading and Configuring Android SDK!!"
 echo "Making sure unzip is installed"
-sudo apt-get install unzip
+sudo apt-get install unzip $PARAM
 
 if [ `getconf LONG_BIT` = "64" ]
 then
@@ -132,11 +175,15 @@ else
 	echo "Done!!"
 fi
 
-read -p "Press [Enter] key to continue..."
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 
 clear
 
-echo "Cleaning up downloaded shit!"
+echo "Cleaning up temporary files..."
 rm -f Python-2.5.6.tgz
 rm -Rf Python-2.5.6
 rm -f make-3.81.tar.gz
@@ -147,7 +194,12 @@ rm -f adt-bundle-linux-x86-20130522.zip
 rm -Rf adt-bundle-linux-x86_64-20130522
 rm -f ccache-3.1.9.tar.gz
 rm -Rf ccache-3.1.9
-read -p "Press [Enter] key to continue..."
+
+if [ $SKIP==1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
 clear
 
 echo "Done!"
