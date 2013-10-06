@@ -23,7 +23,9 @@ fi
 
 clear
 
+echo
 echo "Entering Downloads Directory"
+echo
 if [ ! -d ~/Downloads ]; then
   mkdir -p ~/Downloads
 fi
@@ -37,7 +39,9 @@ fi
 
 clear
 
+echo
 echo "Installing Python!"
+echo
 sudo apt-get install build-essential gcc $PARAM
 wget http://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz
 tar -xvzf Python-2.5.6.tgz
@@ -56,7 +60,9 @@ fi
 
 clear
 
+echo
 echo "Installing CCache!"
+echo
 wget http://www.samba.org/ftp/ccache/ccache-3.1.9.tar.gz
 tar -xvzf ccache-3.1.9.tar.gz
 cd ccache-3.1.9
@@ -70,10 +76,11 @@ else
   read -p "Press [Enter] key to continue..."
 fi
 
-
 clear
 
+echo
 echo "Installing JDK 6!"
+echo
 wget  --no-check-certificate --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin"
 chmod +x jdk-6u45-linux-x64.bin
 sudo ./jdk-6u45-linux-x64.bin
@@ -93,8 +100,9 @@ fi
 
 clear
 
+echo
 echo "Installing GNU Make!"
-
+echo
 wget -o make.tar.gz http://ftp.gnu.org/gnu/make/make-3.81.tar.gz
 tar -xvzf make-3.81.tar.gz
 cd make-3.81
@@ -110,8 +118,9 @@ fi
 
 clear
 
+echo
 echo "Installing Required Packages!"
-
+echo
 sudo apt-get install git-core gnupg flex bison gperf build-essential \
 zip curl zlib1g-dev libc6-dev libncurses5-dev x11proto-core-dev \
 libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
@@ -126,11 +135,23 @@ fi
 
 clear
 
+echo
 echo "Installing GIT!"
-
+echo
 sudo apt-get install git $PARAM
 
+echo
+echo "Installing Repo"
+echo
+if [ ! -d ~/bin ]; then
+  mkdir -p ~/bin
+fi
+curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+
+echo
 echo "Installing ADB Drivers!"
+echo
 sudo apt-get install android-tools-adb $PARAM
 sudo wget http://www.broodplank.net/51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
@@ -144,12 +165,15 @@ fi
 
 clear
 
+echo
 echo "Downloading and Configuring Android SDK!!"
 echo "Making sure unzip is installed"
+echo
 sudo apt-get install unzip $PARAM
 
 if [ `getconf LONG_BIT` = "64" ]
 then
+        echo
         echo "Downloading SDK for 64bit Linux System"
 	wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130522.zip
 	echo "Download Complete!!"
@@ -162,6 +186,7 @@ then
 	./configure
 	echo "Done!!"
 else
+        echo
    	echo "Downloading SDK for 32bit Linux System"
 	wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20130522.zip
 	echo "Download Complete!!"
@@ -183,7 +208,9 @@ fi
 
 clear
 
+echo
 echo "Cleaning up temporary files..."
+echo
 rm -f Python-2.5.6.tgz
 rm -Rf Python-2.5.6
 rm -f make-3.81.tar.gz
@@ -202,10 +229,11 @@ else
 fi
 clear
 
+echo
 echo "Done!"
-
+echo
 echo "Cheers!"
-echo ""
+echo
 echo "Thanks for using this script!"
 echo "Now, Enjoy compiling roms/kernels :)"
 read -p "Press [Enter] key to exit..."
