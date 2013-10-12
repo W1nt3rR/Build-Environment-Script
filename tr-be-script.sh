@@ -146,14 +146,14 @@ echo
 if [ ! -d ~/bin ]; then
   mkdir -p ~/bin
 fi
-curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
+curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 
 echo
 echo "Installing ADB Drivers!"
 echo
-sudo apt-get install android-tools-adb $PARAM
-sudo wget -x http://www.broodplank.net/51-android.rules -P /etc/udev/rules.d/51-android.rules
+wget http://www.broodplank.net/51-android.rules
+sudo mv -f 51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
 
 
