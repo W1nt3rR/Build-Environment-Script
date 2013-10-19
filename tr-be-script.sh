@@ -181,7 +181,7 @@ then
 	mkdir adt-bundle
 	mv adt-bundle-linux-x86_64-20130522.zip adt-bundle/adt_x64.zip
 	cd adt-bundle
-	unzip adt-x64.zip
+	unzip adt_x64.zip
 	echo "Configuring"
 	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
 	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
