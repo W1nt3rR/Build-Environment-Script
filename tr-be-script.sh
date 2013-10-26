@@ -45,12 +45,12 @@ echo
 sudo apt-get install build-essential gcc $PARAM
 wget http://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz
 tar -xvzf Python-2.5.6.tgz
-cd Python-2.5.6
+cd ~/Downloads/Python-2.5.6
 ./configure --prefix=/usr/local/python2.5
 make -j${JOBS}
 sudo make install -j${JOBS}
 sudo ln -s /usr/local/python2.5/bin/python /usr/bin/python2.5
-cd ..
+cd ~/Downloads
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -65,7 +65,7 @@ echo "Installing CCache!"
 echo
 wget http://www.samba.org/ftp/ccache/ccache-3.1.9.tar.gz
 tar -xvzf ccache-3.1.9.tar.gz
-cd ccache-3.1.9
+cd ~/Downloads/ccache-3.1.9
 ./configure
 make -j${JOBS}
 sudo make install -j${JOBS}
@@ -103,12 +103,12 @@ clear
 echo
 echo "Installing GNU Make!"
 echo
-wget -o make.tar.gz http://ftp.gnu.org/gnu/make/make-3.81.tar.gz
+wget http://ftp.gnu.org/gnu/make/make-3.81.tar.gz
 tar -xvzf make-3.81.tar.gz
-cd make-3.81
+cd ~/Downloads/make-3.81
 ./configure
 sudo make install -j${JOBS}
-cd ..
+cd ~/
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -175,30 +175,38 @@ if [ `getconf LONG_BIT` = "64" ]
 then
         echo
         echo "Downloading SDK for 64bit Linux System"
-	wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130522.zip
+	wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130917.zip
 	echo "Download Complete!!"
 	echo "Extracting"
-	mkdir adt-bundle
-	mv adt-bundle-linux-x86_64-20130522.zip adt-bundle/adt_x64.zip
-	cd adt-bundle
+	mkdir ~/adt-bundle
+	mv adt-bundle-linux-x86_64-20130917.zip ~/adt-bundle/adt_x64.zip
+	cd ~/adt-bundle
 	unzip adt_x64.zip
-	echo "Configuring"
+        mv -f adt-bundle-linux-x86_64-20130917/* .
+	echo "Configuring environment"
 	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
 	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
+        echo "Placing desktop shortcuts"
+	ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
+	ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
 	echo "Done!!"
 else
         echo
    	echo "Downloading SDK for 32bit Linux System"
-	wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20130522.zip
+	wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20130917.zip
 	echo "Download Complete!!"
 	echo "Extracting"
-	mkdir adt-bundle
-	mv adt-bundle-linux-x86-20130522.zip adt-bundle/adt_x86.zip
-	cd adt-bundle
+	mkdir ~/adt-bundle
+	mv adt-bundle-linux-x86-20130917.zip ~/adt-bundle/adt_x86.zip
+	cd ~/adt-bundle
 	unzip adt_x86.zip
-	echo "Configuring"
+        mv -f adt-bundle-linux-x86_64-20130917/* .
+	echo "Configuring environment"
 	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
 	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
+        echo "Placing desktop shortcuts"
+	ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
+	ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
 	echo "Done!!"
 fi
 
@@ -213,23 +221,17 @@ clear
 echo
 echo "Cleaning up temporary files..."
 echo
-rm -f Python-2.5.6.tgz
-rm -Rf Python-2.5.6
-rm -f make-3.81.tar.gz
-rm -Rf make-3.81
-rm -f jdk-6u45-linux-x64.bin
-rm -Rf adt-bundle-linux-x86-20130522
-rm -f adt-bundle-linux-x86-20130522.zip
-rm -Rf adt-bundle-linux-x86_64-20130522
-rm -f ccache-3.1.9.tar.gz
-rm -Rf ccache-3.1.9
-
-if [ ${SKIP} = 1 ]; then
-  echo "Unattended installation. skipping pause..."
-else
-  read -p "Press [Enter] key to continue..."
-fi
-clear
+rm -f ~/Downloads/Python-2.5.6.tgz
+rm -Rf ~/Downloads/Python-2.5.6
+rm -f ~/Downloads/make-3.81.tar.gz
+rm -Rf ~/Downloads/make-3.81
+rm -f ~/Downloads/jdk-6u45-linux-x64.bin
+rm -f ~/Downloads/ccache-3.1.9.tar.gz
+rm -Rf ~/Downloads/ccache-3.1.9
+rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20130917
+rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20130917
+rm -f ~/adt-bundle/adt_x64.zip
+rm -f ~/adt-bundle/adt_x86.zip
 
 echo
 echo "Done!"
