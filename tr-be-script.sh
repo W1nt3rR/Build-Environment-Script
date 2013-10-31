@@ -136,6 +136,18 @@ fi
 clear
 
 echo
+echo "Add  terminal to The mouse right button shortcut!"
+echo
+sudo apt-get install nautilus-open-terminal $PARAM
+nautilus -q
+
+echo
+echo "Installing Smarthosts!"
+echo
+sudo wget https://smarthosts.googlecode.com/svn/trunk/hosts -O /etc/hosts
+sudo chmod a+x /etc/hosts
+
+echo
 echo "Installing GIT!"
 echo
 sudo apt-get install git $PARAM
