@@ -24,6 +24,19 @@ fi
 clear
 
 echo
+echo "Installing System Update "
+echo
+sudo apt-get update
+
+if [ ${SKIP} = 1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
+
+clear
+
+echo
 echo "Entering Downloads Directory"
 echo
 if [ ! -d ~/Downloads ]; then
@@ -125,7 +138,9 @@ sudo apt-get install git-core gnupg flex bison gperf build-essential \
 zip curl zlib1g-dev libc6-dev libncurses5-dev x11proto-core-dev \
 libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
 libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool \
-libqt4-gui libqt4-core libqt4-dev lib32stdc++6 $PARAM
+libqt4-gui libqt4-core libqt4-dev lib32stdc++6 libx11-dev:i386 \
+pngcrush schedtool g++-multilib lib32z1-dev lib32ncurses5-dev \
+ia32-libs mingw32 lib32z-dev $PARAM
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -234,12 +249,14 @@ echo
 echo "Cleaning up temporary files..."
 echo
 rm -f ~/Downloads/Python-2.5.6.tgz
+sudo chmod 777 ~/Downloads/Python-2.5.6/Lib/plat-linux3
 rm -Rf ~/Downloads/Python-2.5.6
 rm -f ~/Downloads/make-3.81.tar.gz
 rm -Rf ~/Downloads/make-3.81
 rm -f ~/Downloads/jdk-6u45-linux-x64.bin
 rm -f ~/Downloads/ccache-3.1.9.tar.gz
 rm -Rf ~/Downloads/ccache-3.1.9
+rm -Rf ~/Downloads
 rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20130917
 rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20130917
 rm -f ~/adt-bundle/adt_x64.zip
