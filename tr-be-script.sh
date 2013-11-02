@@ -138,9 +138,8 @@ sudo apt-get install git-core gnupg flex bison gperf build-essential \
 zip curl zlib1g-dev libc6-dev libncurses5-dev x11proto-core-dev \
 libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
 libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool \
-libqt4-gui libqt4-core libqt4-dev lib32stdc++6 libx11-dev:i386 \
-pngcrush schedtool g++-multilib lib32z1-dev lib32ncurses5-dev \
-ia32-libs mingw32 lib32z-dev $PARAM
+libqt4-dev lib32stdc++6 libx11-dev:i386 g++-multilib lib32z1-dev \
+lib32ncurses5-dev ia32-libs mingw32 lib32z-dev
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -156,11 +155,17 @@ echo
 sudo apt-get install nautilus-open-terminal $PARAM
 nautilus -q
 
-echo
-echo "Installing Smarthosts!"
-echo
-sudo wget https://smarthosts.googlecode.com/svn/trunk/hosts -O /etc/hosts
-sudo chmod a+x /etc/hosts
+
+export LANGUAGE=`echo $LANG | grep CN`;
+
+if [[ $LANGUAGE != "" ]]; then
+    echo
+    echo "Installing Smarthosts!"
+    echo
+    sudo wget https://smarthosts.googlecode.com/svn/trunk/hosts -O /etc/hosts
+    sudo chmod a+x /etc/hosts
+fi;
+
 
 echo
 echo "Installing GIT!"
@@ -202,14 +207,14 @@ if [ `getconf LONG_BIT` = "64" ]
 then
         echo
         echo "Downloading SDK for 64bit Linux System"
-	wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20130917.zip
+	wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20131030.zip
 	echo "Download Complete!!"
 	echo "Extracting"
 	mkdir ~/adt-bundle
-	mv adt-bundle-linux-x86_64-20130917.zip ~/adt-bundle/adt_x64.zip
+	mv adt-bundle-linux-x86_64-20131030.zip ~/adt-bundle/adt_x64.zip
 	cd ~/adt-bundle
 	unzip adt_x64.zip
-        mv -f adt-bundle-linux-x86_64-20130917/* .
+        mv -f adt-bundle-linux-x86_64-20131030/* .
 	echo "Configuring environment"
 	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
 	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
@@ -220,14 +225,14 @@ then
 else
         echo
    	echo "Downloading SDK for 32bit Linux System"
-	wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20130917.zip
+	wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20131030.zip
 	echo "Download Complete!!"
 	echo "Extracting"
 	mkdir ~/adt-bundle
-	mv adt-bundle-linux-x86-20130917.zip ~/adt-bundle/adt_x86.zip
+	mv adt-bundle-linux-x86-20131030.zip ~/adt-bundle/adt_x86.zip
 	cd ~/adt-bundle
 	unzip adt_x86.zip
-        mv -f adt-bundle-linux-x86_64-20130917/* .
+        mv -f adt-bundle-linux-x86_64-20131030/* .
 	echo "Configuring environment"
 	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
 	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
@@ -256,9 +261,8 @@ rm -Rf ~/Downloads/make-3.81
 rm -f ~/Downloads/jdk-6u45-linux-x64.bin
 rm -f ~/Downloads/ccache-3.1.9.tar.gz
 rm -Rf ~/Downloads/ccache-3.1.9
-rm -Rf ~/Downloads
-rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20130917
-rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20130917
+rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
+rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20131030
 rm -f ~/adt-bundle/adt_x64.zip
 rm -f ~/adt-bundle/adt_x86.zip
 
