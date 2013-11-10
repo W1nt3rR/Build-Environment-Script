@@ -12,10 +12,21 @@ fi
 
 clear
 
-echo "TR Build Environment Setup Script"
-echo "Written by nolinuxnoparty."
-echo "Released under supervision of Team Radium."
-echo "Ruling added some features and fixed some bugs"
+echo
+echo " > [T E A M   R A D I U M] <"
+echo
+echo " Build Environment Setup Script"
+echo
+echo " Script for automatically obtaining all required dependencies "
+echo " for all kinds of Android Developing (kernel compilation/mutation,"
+echo " rom compilation/mutation, reverse engineering and theming)"
+echo 
+echo " The argument '--auto' can be used for assuming yes on most queries" 
+echo
+echo " Visit us at:"
+echo " - https://github.com/TeamRadium"
+echo
+
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -243,10 +254,47 @@ fi
 clear
 
 echo
+echo "Installing APKTool"
+echo
+wget http://android-apktool.googlecode.com/files/apktool1.5.2.tar.bz2
+tar -jxf apktool1.5.2.tar.bz2
+mv -f apktool1.5.2/apktool.jar ~/bin/apktool.jar
+wget http://android-apktool.googlecode.com/files/apktool-install-linux-r05-ibot.tar.bz2
+tar -jxf apktool-install-linux-r05-ibot.tar.bz2
+mv -f apktool-install-linux-r05-ibot/aapt ~/bin/aapt
+mv -f apktool-install-linux-r05-ibot/apktool ~/bin/apktool
+
+if [ ${SKIP} = 1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
+
+clear
+
+echo
+echo "Installing DSIXDA's Android Kitchen"
+echo
+wget https://github.com/dsixda/Android-Kitchen/archive/master.zip
+unzip master.zip
+mv -f Android-Kitchen-master ~/Android-Kitchen
+echo -e '\n#!/bin/bash\ncd ~/Android-Kitchen\n./menu' >> ~/Android-Kitchen/kitchen
+chmod 755 ~/Android-Kitchen/kitchen
+ln -s ~/Android-Kitchen/kitchen ~/bin/kitchen
+ln -s ~/Android-Kitchen/kitchen ~/Desktop/Android-Kitchen
+
+if [ ${SKIP} = 1 ]; then
+  echo "Unattended installation. skipping pause..."
+else
+  read -p "Press [Enter] key to continue..."
+fi
+
+clear
+
+echo
 echo "Cleaning up temporary files..."
 echo
 rm -f ~/Downloads/Python-2.5.6.tgz
-sudo chmod 777 ~/Downloads/Python-2.5.6/Lib/plat-linux3
 rm -Rf ~/Downloads/Python-2.5.6
 rm -f ~/Downloads/make-4.0.tar.gz
 rm -Rf ~/Downloads/make-4.0
@@ -257,6 +305,13 @@ rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
 rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20131030
 rm -f ~/adt-bundle/adt_x64.zip
 rm -f ~/adt-bundle/adt_x86.zip
+rm -f ~/Downloads/master.zip
+rm -f ~/Downloads/apktool1.5.2.tar.bz2
+rm -Rf ~/Downloads/apktool1.5.2
+rm -f ~/Downloads/apktool-install-linux-r05-ibot.tar.bz2
+rm -Rf ~/Downloads/apktool-install-linux-r05-ibot
+
+clear
 
 echo
 echo "Done!"
@@ -265,5 +320,15 @@ echo "Cheers!"
 echo
 echo "Thanks for using this script!"
 echo "Now, Enjoy compiling roms/kernels :)"
+echo
+echo "Credits:"
+echo 
+echo "Script created by:"
+echo " - nolinuxnoparty"
+echo 
+echo "Additional implementations by:"
+echo " - broodplank"
+echo " - Ruling"
+echo
 read -p "Press [Enter] key to exit..."
 exit
