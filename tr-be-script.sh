@@ -11,9 +11,11 @@ else
 fi
 
 clear
+
 echo "TR Build Environment Setup Script"
 echo "Written by nolinuxnoparty."
 echo "Released under supervision of Team Radium."
+echo "Ruling added some features and fixed some bugs"
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -76,13 +78,15 @@ clear
 echo
 echo "Installing CCache!"
 echo
-wget http://www.samba.org/ftp/ccache/ccache-3.1.9.tar.gz
-tar -xvzf ccache-3.1.9.tar.gz
-cd ~/Downloads/ccache-3.1.9
+wget http://www.samba.org/ftp/ccache/ccache-3.1.tar.gz
+tar -xvzf ccache-3.1.tar.gz
+cd ~/Downloads/ccache-3.1
 ./configure
 make -j${JOBS}
 sudo make install -j${JOBS}
 echo "export USE_CCACHE=1" >> ~/.bashrc
+cd ~/Downloads
+
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
@@ -116,12 +120,13 @@ clear
 echo
 echo "Installing GNU Make!"
 echo
-wget http://ftp.gnu.org/gnu/make/make-3.81.tar.gz
-tar -xvzf make-3.81.tar.gz
-cd ~/Downloads/make-3.81
+wget http://ftp.gnu.org/gnu/make/make-4.0.tar.gz
+tar -xvzf make-4.0.tar.gz
+cd ~/Downloads/make-4.0
 ./configure
 sudo make install -j${JOBS}
 cd ~/
+
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -155,18 +160,6 @@ echo
 sudo apt-get install nautilus-open-terminal $PARAM
 nautilus -q
 
-
-export LANGUAGE=`echo $LANG | grep CN`;
-
-if [[ $LANGUAGE != "" ]]; then
-    echo
-    echo "Installing Smarthosts!"
-    echo
-    sudo wget https://smarthosts.googlecode.com/svn/trunk/hosts -O /etc/hosts
-    sudo chmod a+x /etc/hosts
-fi;
-
-
 echo
 echo "Installing GIT!"
 echo
@@ -188,7 +181,6 @@ wget http://www.broodplank.net/51-android.rules
 sudo mv -f 51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
 
-
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
@@ -207,39 +199,39 @@ if [ `getconf LONG_BIT` = "64" ]
 then
         echo
         echo "Downloading SDK for 64bit Linux System"
-	wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20131030.zip
-	echo "Download Complete!!"
-	echo "Extracting"
-	mkdir ~/adt-bundle
-	mv adt-bundle-linux-x86_64-20131030.zip ~/adt-bundle/adt_x64.zip
-	cd ~/adt-bundle
-	unzip adt_x64.zip
+        wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20131030.zip
+        echo "Download Complete!!"
+        echo "Extracting"
+        mkdir ~/adt-bundle
+        mv adt-bundle-linux-x86_64-20131030.zip ~/adt-bundle/adt_x64.zip
+        cd ~/adt-bundle
+        unzip adt_x64.zip
         mv -f adt-bundle-linux-x86_64-20131030/* .
-	echo "Configuring environment"
-	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
-	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
+        echo "Configuring environment"
+        echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
+        echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
         echo "Placing desktop shortcuts"
-	ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
-	ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
-	echo "Done!!"
+        ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
+        ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
+        echo "Done!!"
 else
         echo
-   	echo "Downloading SDK for 32bit Linux System"
-	wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20131030.zip
-	echo "Download Complete!!"
-	echo "Extracting"
-	mkdir ~/adt-bundle
-	mv adt-bundle-linux-x86-20131030.zip ~/adt-bundle/adt_x86.zip
-	cd ~/adt-bundle
-	unzip adt_x86.zip
+           echo "Downloading SDK for 32bit Linux System"
+        wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20131030.zip
+        echo "Download Complete!!"
+        echo "Extracting"
+        mkdir ~/adt-bundle
+        mv adt-bundle-linux-x86-20131030.zip ~/adt-bundle/adt_x86.zip
+        cd ~/adt-bundle
+        unzip adt_x86.zip
         mv -f adt-bundle-linux-x86_64-20131030/* .
-	echo "Configuring environment"
-	echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
-	echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
+        echo "Configuring environment"
+        echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
+        echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
         echo "Placing desktop shortcuts"
-	ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
-	ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
-	echo "Done!!"
+        ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
+        ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
+        echo "Done!!"
 fi
 
 if [ ${SKIP} = 1 ]; then
@@ -256,11 +248,11 @@ echo
 rm -f ~/Downloads/Python-2.5.6.tgz
 sudo chmod 777 ~/Downloads/Python-2.5.6/Lib/plat-linux3
 rm -Rf ~/Downloads/Python-2.5.6
-rm -f ~/Downloads/make-3.81.tar.gz
-rm -Rf ~/Downloads/make-3.81
+rm -f ~/Downloads/make-4.0.tar.gz
+rm -Rf ~/Downloads/make-4.0
 rm -f ~/Downloads/jdk-6u45-linux-x64.bin
-rm -f ~/Downloads/ccache-3.1.9.tar.gz
-rm -Rf ~/Downloads/ccache-3.1.9
+rm -f ~/Downloads/ccache-3.1.tar.gz
+rm -Rf ~/Downloads/ccache-3.1
 rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
 rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20131030
 rm -f ~/adt-bundle/adt_x64.zip
