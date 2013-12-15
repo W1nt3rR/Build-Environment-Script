@@ -32,6 +32,8 @@ if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
+  read -p "Press [Enter] key to continue..."
+fi
 fi
 
 clear
@@ -44,18 +46,16 @@ sudo apt-get update
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
-  read -p "Press [Enter] key to continue..."
-fi
 
 clear
 
 echo
-echo "Entering Downloads Directory"
+echo "Entering SCRIPT FILE'S DOWNLOAD Directory"
 echo
-if [ ! -d ~/Downloads ]; then
-  mkdir -p ~/Downloads
+if [ ! -d ~/tr-be-script ]; then
+  mkdir -p ~/tr-be-script
 fi
-cd ~/Downloads
+cd ~/tr-be-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -69,14 +69,14 @@ echo
 echo "Installing Python!"
 echo
 sudo apt-get install build-essential gcc $PARAM
-wget http://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz
-tar -xvzf Python-2.5.6.tgz
-cd ~/Downloads/Python-2.5.6
-./configure --prefix=/usr/local/python2.5
+wget http://www.python.org/ftp/python/3.3.2/Python-3.3.2.tgz
+tar -xvzf Python-3.3.2.tgz
+cd Python-3.3.2
+./configure --prefix=/usr/local/python3.3
 make -j${JOBS}
 sudo make install -j${JOBS}
-sudo ln -s /usr/local/python2.5/bin/python /usr/bin/python2.5
-cd ~/Downloads
+sudo ln -s /usr/local/python3.3/bin/python /usr/bin/python3.3
+cd ~/tr-be-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -91,12 +91,12 @@ echo "Installing CCache!"
 echo
 wget http://www.samba.org/ftp/ccache/ccache-3.1.tar.gz
 tar -xvzf ccache-3.1.tar.gz
-cd ~/Downloads/ccache-3.1
+cd ccache-3.1
 ./configure
 make -j${JOBS}
 sudo make install -j${JOBS}
 echo "export USE_CCACHE=1" >> ~/.bashrc
-cd ~/Downloads
+cd ~/tr-be-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -112,6 +112,7 @@ echo
 wget  --no-check-certificate --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin"
 chmod +x jdk-6u45-linux-x64.bin
 sudo ./jdk-6u45-linux-x64.bin
+sudo mkdir /usr/lib/jvm
 sudo mv jdk1.6.0_45 /usr/lib/jvm/
 sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_45/bin/java 1
 sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_45/bin/javac 1
@@ -133,10 +134,10 @@ echo "Installing GNU Make!"
 echo
 wget http://ftp.gnu.org/gnu/make/make-3.82.tar.gz
 tar -xvzf make-3.82.tar.gz
-cd ~/Downloads/make-3.82
+cd make-3.82
 ./configure
 sudo make install -j${JOBS}
-cd ~/
+cd ~/tr-be-script
 
 
 if [ ${SKIP} = 1 ]; then
@@ -182,12 +183,13 @@ echo
 if [ ! -d ~/bin ]; then
   mkdir -p ~/bin
 fi
-curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+curl http://commondatastorage.googleapis.com/git-repo-tr-be-script/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 
 echo
 echo "Installing ADB Drivers!"
 echo
+cd ~/tr-be-script
 wget http://www.broodplank.net/51-android.rules
 sudo mv -f 51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
@@ -205,6 +207,7 @@ echo "Downloading and Configuring Android SDK!!"
 echo "Making sure unzip is installed"
 echo
 sudo apt-get install unzip $PARAM
+cd ~/tr-be-script
 
 if [ `getconf LONG_BIT` = "64" ]
 then
@@ -254,25 +257,6 @@ fi
 clear
 
 echo
-echo "Installing APKTool"
-echo
-wget http://android-apktool.googlecode.com/files/apktool1.5.2.tar.bz2
-tar -jxf apktool1.5.2.tar.bz2
-mv -f apktool1.5.2/apktool.jar ~/bin/apktool.jar
-wget http://android-apktool.googlecode.com/files/apktool-install-linux-r05-ibot.tar.bz2
-tar -jxf apktool-install-linux-r05-ibot.tar.bz2
-mv -f apktool-install-linux-r05-ibot/aapt ~/bin/aapt
-mv -f apktool-install-linux-r05-ibot/apktool ~/bin/apktool
-
-if [ ${SKIP} = 1 ]; then
-  echo "Unattended installation. skipping pause..."
-else
-  read -p "Press [Enter] key to continue..."
-fi
-
-clear
-
-echo
 echo "Installing DSIXDA's Android Kitchen"
 echo
 wget https://github.com/dsixda/Android-Kitchen/archive/master.zip
@@ -294,22 +278,22 @@ clear
 echo
 echo "Cleaning up temporary files..."
 echo
-rm -f ~/Downloads/Python-2.5.6.tgz
-rm -Rf ~/Downloads/Python-2.5.6
-rm -f ~/Downloads/make-4.0.tar.gz
-rm -Rf ~/Downloads/make-4.0
-rm -f ~/Downloads/jdk-6u45-linux-x64.bin
-rm -f ~/Downloads/ccache-3.1.tar.gz
-rm -Rf ~/Downloads/ccache-3.1
-rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
-rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20131030
-rm -f ~/adt-bundle/adt_x64.zip
-rm -f ~/adt-bundle/adt_x86.zip
-rm -f ~/Downloads/master.zip
-rm -f ~/Downloads/apktool1.5.2.tar.bz2
-rm -Rf ~/Downloads/apktool1.5.2
-rm -f ~/Downloads/apktool-install-linux-r05-ibot.tar.bz2
-rm -Rf ~/Downloads/apktool-install-linux-r05-ibot
+rm -f ~/tr-be-script/Python-3.3.2.tgz
+rm -ff ~/tr-be-script/Python-3.3.2
+rm -f ~/tr-be-script/make-4.0.tar.gz
+rm -ff ~/tr-be-script/make-4.0
+rm -f ~/tr-be-script/jdk-6u45-linux-x64.bin
+rm -f ~/tr-be-script/ccache-3.1.tar.gz
+rm -ff ~/tr-be-script/ccache-3.1
+rm -ff ~/tr-be-script/adt-bundle/adt-bundle-linux-x86_64-20131030
+rm -ff ~/tr-be-script/adt-bundle/adt-bundle-linux-x86-20131030
+rm -f ~/tr-be-scriptadt-bundle/adt_x64.zip
+rm -f ~/tr-be-script/adt-bundle/adt_x86.zip
+rm -f ~/tr-be-script/master.zip
+rm -f ~/tr-be-script/apktool1.5.2.tar.bz2
+rm -ff ~/tr-be-script/apktool1.5.2
+rm -f ~/tr-be-script/apktool-install-linux-r05-ibot.tar.bz2
+rm -ff ~/tr-be-script/apktool-install-linux-r05-ibot
 
 clear
 
@@ -324,11 +308,7 @@ echo
 echo "Credits:"
 echo 
 echo "Script created by:"
-echo " - nolinuxnoparty"
+echo "> [T E A M  R A D I U M] <"
 echo 
-echo "Additional implementations by:"
-echo " - broodplank"
-echo " - Ruling"
-echo
 read -p "Press [Enter] key to exit..."
 exit
