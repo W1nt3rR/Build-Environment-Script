@@ -277,21 +277,18 @@ echo
 echo "Cleaning up temporary files..."
 echo
 rm -f ~/tr-be-script/Python-3.3.2.tgz
-rm -ff ~/tr-be-script/Python-3.3.2
+rm -rf ~/tr-be-script/Python-3.3.2
 rm -f ~/tr-be-script/make-4.0.tar.gz
-rm -ff ~/tr-be-script/make-4.0
+rm -rf ~/tr-be-script/make-4.0
 rm -f ~/tr-be-script/jdk-6u45-linux-x64.bin
 rm -f ~/tr-be-script/ccache-3.1.tar.gz
-rm -ff ~/tr-be-script/ccache-3.1
-rm -ff ~/tr-be-script/adt-bundle/adt-bundle-linux-x86_64-20131030
-rm -ff ~/tr-be-script/adt-bundle/adt-bundle-linux-x86-20131030
+rm -rf ~/tr-be-script/ccache-3.1
+rm -rf ~/tr-be-script/adt-bundle/adt-bundle-linux-x86_64-20131030
+rm -rf ~/tr-be-script/adt-bundle/adt-bundle-linux-x86-20131030
 rm -f ~/tr-be-scriptadt-bundle/adt_x64.zip
 rm -f ~/tr-be-script/adt-bundle/adt_x86.zip
 rm -f ~/tr-be-script/master.zip
 rm -f ~/tr-be-script/apktool1.5.2.tar.bz2
-rm -ff ~/tr-be-script/apktool1.5.2
-rm -f ~/tr-be-script/apktool-install-linux-r05-ibot.tar.bz2
-rm -ff ~/tr-be-script/apktool-install-linux-r05-ibot
 
 clear
 
