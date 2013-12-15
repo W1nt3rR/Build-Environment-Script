@@ -32,8 +32,6 @@ if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
   read -p "Press [Enter] key to continue..."
-  read -p "Press [Enter] key to continue..."
-fi
 fi
 
 clear
