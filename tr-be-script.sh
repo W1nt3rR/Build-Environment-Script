@@ -131,9 +131,9 @@ clear
 echo
 echo "Installing GNU Make!"
 echo
-wget http://ftp.gnu.org/gnu/make/make-4.0.tar.gz
-tar -xvzf make-4.0.tar.gz
-cd ~/Downloads/make-4.0
+wget http://ftp.gnu.org/gnu/make/make-3.82.tar.gz
+tar -xvzf make-3.82.tar.gz
+cd ~/Downloads/make-3.82
 ./configure
 sudo make install -j${JOBS}
 cd ~/
