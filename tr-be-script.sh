@@ -183,7 +183,7 @@ echo
 if [ ! -d ~/bin ]; then
   mkdir -p ~/bin
 fi
-curl http://commondatastorage.googleapis.com/git-repo-tr-be-script/repo > ~/bin/repo
+curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 
 echo
