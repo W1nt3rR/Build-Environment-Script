@@ -44,6 +44,8 @@ sudo apt-get update
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
 else
+  read -p "Press [Enter] key to continue..."
+fi
 
 clear
 
