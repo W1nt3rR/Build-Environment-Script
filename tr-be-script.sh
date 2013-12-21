@@ -71,7 +71,7 @@ echo
 sudo apt-get install build-essential gcc $PARAM
 wget http://www.python.org/ftp/python/3.3.2/Python-3.3.2.tgz
 tar -xvzf Python-3.3.2.tgz
-cd Python-3.3.2
+cd ~/tr-be-script/Python-3.3.2
 ./configure --prefix=/usr/local/python3.3
 make -j${JOBS}
 sudo make install -j${JOBS}
@@ -91,7 +91,7 @@ echo "Installing CCache!"
 echo
 wget http://www.samba.org/ftp/ccache/ccache-3.1.tar.gz
 tar -xvzf ccache-3.1.tar.gz
-cd ccache-3.1
+cd ~/tr-be-script/ccache-3.1
 ./configure
 make -j${JOBS}
 sudo make install -j${JOBS}
@@ -132,13 +132,13 @@ clear
 echo
 echo "Installing GNU Make!"
 echo
+cd ~/tr-be-script
 wget http://ftp.gnu.org/gnu/make/make-3.82.tar.gz
 tar -xvzf make-3.82.tar.gz
-cd make-3.82
+cd ~/tr-be-script/make-3.82
 ./configure
 sudo make install -j${JOBS}
-cd ~/tr-be-script
-
+cd ~/
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -189,7 +189,6 @@ chmod a+x ~/bin/repo
 echo
 echo "Installing ADB Drivers!"
 echo
-cd ~/tr-be-script
 wget http://www.broodplank.net/51-android.rules
 sudo mv -f 51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
@@ -207,7 +206,6 @@ echo "Downloading and Configuring Android SDK!!"
 echo "Making sure unzip is installed"
 echo
 sudo apt-get install unzip $PARAM
-cd ~/tr-be-script
 
 if [ `getconf LONG_BIT` = "64" ]
 then
@@ -229,6 +227,7 @@ then
         ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
         echo "Done!!"
 else
+
         echo
            echo "Downloading SDK for 32bit Linux System"
         wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20131030.zip
@@ -259,6 +258,7 @@ clear
 echo
 echo "Installing DSIXDA's Android Kitchen"
 echo
+cd ~/tr-be-script
 wget https://github.com/dsixda/Android-Kitchen/archive/master.zip
 unzip master.zip
 mv -f Android-Kitchen-master ~/Android-Kitchen
@@ -279,18 +279,20 @@ echo
 echo "Cleaning up temporary files..."
 echo
 rm -f ~/tr-be-script/Python-3.3.2.tgz
+sudo chmod 777 ~/tr-be-script/Python-3.3.2/Lib/lib2to3/pgen2/__pycache__
+sudo chmod 777 ~/tr-be-script/Python-3.3.2/Lib/lib2to3/__pycache__
+sudo chmod 777 ~/tr-be-script/Python-3.3.2/Lib/logging/__pycache__
 rm -rf ~/tr-be-script/Python-3.3.2
-rm -f ~/tr-be-script/make-4.0.tar.gz
-rm -rf ~/tr-be-script/make-4.0
+rm -f ~/tr-be-script/make-3.82.tar.gz
+rm -rf ~/tr-be-script/make-3.82
 rm -f ~/tr-be-script/jdk-6u45-linux-x64.bin
 rm -f ~/tr-be-script/ccache-3.1.tar.gz
 rm -rf ~/tr-be-script/ccache-3.1
-rm -rf ~/tr-be-script/adt-bundle/adt-bundle-linux-x86_64-20131030
-rm -rf ~/tr-be-script/adt-bundle/adt-bundle-linux-x86-20131030
-rm -f ~/tr-be-scriptadt-bundle/adt_x64.zip
-rm -f ~/tr-be-script/adt-bundle/adt_x86.zip
+rm -rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
+rm -rf ~/adt-bundle/adt-bundle-linux-x86-20131030
+rm -f ~/adt-bundle/adt_x64.zip
+rm -f ~/adt-bundle/adt_x86.zip
 rm -f ~/tr-be-script/master.zip
-rm -f ~/tr-be-script/apktool1.5.2.tar.bz2
 
 clear
 
