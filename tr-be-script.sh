@@ -279,10 +279,7 @@ echo
 echo "Cleaning up temporary files..."
 echo
 rm -f ~/tr-be-script/Python-3.3.2.tgz
-sudo chmod 777 ~/tr-be-script/Python-3.3.2/Lib/lib2to3/pgen2/__pycache__
-sudo chmod 777 ~/tr-be-script/Python-3.3.2/Lib/lib2to3/__pycache__
-sudo chmod 777 ~/tr-be-script/Python-3.3.2/Lib/logging/__pycache__
-rm -rf ~/tr-be-script/Python-3.3.2
+sudo rm -rf ~/tr-be-script/Python-3.3.2
 rm -f ~/tr-be-script/make-3.82.tar.gz
 rm -rf ~/tr-be-script/make-3.82
 rm -f ~/tr-be-script/jdk-6u45-linux-x64.bin
