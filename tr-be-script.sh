@@ -37,19 +37,6 @@ fi
 clear
 
 echo
-echo "Installing System Update "
-echo
-sudo apt-get update
-
-if [ ${SKIP} = 1 ]; then
-  echo "Unattended installation. skipping pause..."
-else
-  read -p "Press [Enter] key to continue..."
-fi
-
-clear
-
-echo
 echo "Entering SCRIPT FILE'S DOWNLOAD Directory"
 echo
 if [ ! -d ~/tr-be-script ]; then
@@ -96,6 +83,7 @@ cd ~/tr-be-script/ccache-3.1
 make -j${JOBS}
 sudo make install -j${JOBS}
 echo "export USE_CCACHE=1" >> ~/.bashrc
+ccache -M 25G
 cd ~/tr-be-script
 
 if [ ${SKIP} = 1 ]; then
@@ -109,16 +97,9 @@ clear
 echo
 echo "Installing JDK 6!"
 echo
-wget  --no-check-certificate --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin"
-chmod +x jdk-6u45-linux-x64.bin
-sudo ./jdk-6u45-linux-x64.bin
-sudo mkdir /usr/lib/jvm
-sudo mv jdk1.6.0_45 /usr/lib/jvm/
-sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_45/bin/java 1
-sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_45/bin/javac 1
-sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.6.0_45/bin/javaws 1
-sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_45/bin/jar 1
-sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/jdk1.6.0_45/bin/javadoc 1
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java6-installer
 java -version
 
 if [ ${SKIP} = 1 ]; then
@@ -229,7 +210,7 @@ then
 else
 
         echo
-           echo "Downloading SDK for 32bit Linux System"
+        echo "Downloading SDK for 32bit Linux System"
         wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20131030.zip
         echo "Download Complete!!"
         echo "Extracting"
@@ -282,7 +263,6 @@ rm -f ~/tr-be-script/Python-3.3.2.tgz
 sudo rm -rf ~/tr-be-script/Python-3.3.2
 rm -f ~/tr-be-script/make-3.82.tar.gz
 rm -rf ~/tr-be-script/make-3.82
-rm -f ~/tr-be-script/jdk-6u45-linux-x64.bin
 rm -f ~/tr-be-script/ccache-3.1.tar.gz
 rm -rf ~/tr-be-script/ccache-3.1
 rm -rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
