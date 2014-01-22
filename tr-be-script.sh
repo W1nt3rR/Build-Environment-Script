@@ -76,9 +76,9 @@ clear
 echo
 echo "Installing CCache!"
 echo
-wget http://www.samba.org/ftp/ccache/ccache-3.1.tar.gz
-tar -xvzf ccache-3.1.tar.gz
-cd ~/tr-be-script/ccache-3.1
+wget http://www.samba.org/ftp/ccache/ccache-3.1.9.tar.gz
+tar -xvzf ccache-3.1.9.tar.gz
+cd ~/tr-be-script/ccache-3.1.9
 ./configure
 make -j${JOBS}
 sudo make install -j${JOBS}
@@ -263,8 +263,8 @@ rm -f ~/tr-be-script/Python-3.3.2.tgz
 sudo rm -rf ~/tr-be-script/Python-3.3.2
 rm -f ~/tr-be-script/make-3.82.tar.gz
 rm -rf ~/tr-be-script/make-3.82
-rm -f ~/tr-be-script/ccache-3.1.tar.gz
-rm -rf ~/tr-be-script/ccache-3.1
+rm -f ~/tr-be-script/ccache-3.1.9.tar.gz
+rm -rf ~/tr-be-script/ccache-3.1.9
 rm -rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
 rm -rf ~/adt-bundle/adt-bundle-linux-x86-20131030
 rm -f ~/adt-bundle/adt_x64.zip
