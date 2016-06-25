@@ -194,7 +194,7 @@ then
         echo "Download Complete!!"
         echo "Extracting"
         mkdir ~/adt-bundle
-        mv adt-bundle-linux-x86_64-20140702 ~/adt-bundle/adt_x64.zip
+        mv adt-bundle-linux-x86_64-20140702.zip ~/adt-bundle/adt_x64.zip
         cd ~/adt-bundle
         unzip adt_x64.zip
         mv -f adt-bundle-linux-x86_64-20140702/* .
