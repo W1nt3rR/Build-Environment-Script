@@ -1,12 +1,15 @@
-WinterRs Build Environment Setup Script
+## WinterRs Build Environment Setup Script ##
 
-  Type in terminal:
-  
+####  Type in terminal: ####
+```bash  
     curl --create-dirs -L -o winter-script.sh -O -L https://raw.github.com/WinterRo/Winter-Script/master/winter-script.sh
-  Then:
-  
+```
+####  Then: ####
+```bash  
     . winter-script.sh
+```
 
+---
 
 Original script on xda(OLD):
 
