@@ -13,7 +13,7 @@ fi
 clear
 
 echo
-echo " > [T E A M   R A D I U M] <"
+echo " > [W I N T E R R] <"
 echo
 echo " Build Environment Setup Script"
 echo
@@ -23,8 +23,6 @@ echo " rom compilation/mutation, reverse engineering and theming)"
 echo 
 echo " The argument '--auto' can be used for assuming yes on most queries" 
 echo
-echo " Visit us at:"
-echo " - https://github.com/TeamRadium"
 echo
 
 
@@ -39,10 +37,10 @@ clear
 echo
 echo "Entering SCRIPT FILE'S DOWNLOAD Directory"
 echo
-if [ ! -d ~/tr-be-script ]; then
-  mkdir -p ~/tr-be-script
+if [ ! -d ~/winter-script ]; then
+  mkdir -p ~/winter-script
 fi
-cd ~/tr-be-script
+cd ~/winter-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -56,14 +54,14 @@ echo
 echo "Installing Python!"
 echo
 sudo apt-get install build-essential gcc $PARAM
-wget http://www.python.org/ftp/python/3.3.2/Python-3.3.2.tgz
-tar -xvzf Python-3.3.2.tgz
-cd ~/tr-be-script/Python-3.3.2
-./configure --prefix=/usr/local/python3.3
+wget http://www.python.org/ftp/python/3.6.0/Python-3.6.0a2.tgz
+tar -xvzf Python-3.6.0a2.tgz
+cd ~/winter-script/Python-3.6.0a2
+./configure --prefix=/usr/local/python3.6
 make -j${JOBS}
 sudo make install -j${JOBS}
-sudo ln -s /usr/local/python3.3/bin/python /usr/bin/python3.3
-cd ~/tr-be-script
+sudo ln -s /usr/local/python3.6/bin/python /usr/bin/python3.6
+cd ~/winter-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -76,15 +74,15 @@ clear
 echo
 echo "Installing CCache!"
 echo
-wget http://www.samba.org/ftp/ccache/ccache-3.1.9.tar.gz
-tar -xvzf ccache-3.1.9.tar.gz
-cd ~/tr-be-script/ccache-3.1.9
+wget http://www.samba.org/ftp/ccache/ccache-3.2.5.tar.gz
+tar -xvzf ccache-3.2.5.tar.gz
+cd ~/winter-script/ccache-3.2.5
 ./configure
 make -j${JOBS}
 sudo make install -j${JOBS}
 echo "export USE_CCACHE=1" >> ~/.bashrc
 ccache -M 25G
-cd ~/tr-be-script
+cd ~/winter-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -113,10 +111,10 @@ clear
 echo
 echo "Installing GNU Make!"
 echo
-cd ~/tr-be-script
-wget http://ftp.gnu.org/gnu/make/make-3.82.tar.gz
-tar -xvzf make-3.82.tar.gz
-cd ~/tr-be-script/make-3.82
+cd ~/winter-script
+wget http://ftp.gnu.org/gnu/make/make-4.2.1.tar.gz
+tar -xvzf make-4.2.1.tar.gz
+cd ~/winter-script/make-4.2.1
 ./configure
 sudo make install -j${JOBS}
 cd ~/
@@ -137,7 +135,7 @@ zip curl zlib1g-dev libc6-dev libncurses5-dev x11proto-core-dev \
 libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
 libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool \
 libqt4-dev lib32stdc++6 libx11-dev:i386 g++-multilib lib32z1-dev \
-lib32ncurses5-dev ia32-libs mingw32 lib32z-dev
+lib32ncurses5-dev lib32z-dev
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -192,14 +190,14 @@ if [ `getconf LONG_BIT` = "64" ]
 then
         echo
         echo "Downloading SDK for 64bit Linux System"
-        wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20131030.zip
+        wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip
         echo "Download Complete!!"
         echo "Extracting"
         mkdir ~/adt-bundle
-        mv adt-bundle-linux-x86_64-20131030.zip ~/adt-bundle/adt_x64.zip
+        mv adt-bundle-linux-x86_64-20140702 ~/adt-bundle/adt_x64.zip
         cd ~/adt-bundle
         unzip adt_x64.zip
-        mv -f adt-bundle-linux-x86_64-20131030/* .
+        mv -f adt-bundle-linux-x86_64-20140702/* .
         echo "Configuring environment"
         echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
         echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
@@ -211,14 +209,14 @@ else
 
         echo
         echo "Downloading SDK for 32bit Linux System"
-        wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20131030.zip
+        wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip
         echo "Download Complete!!"
         echo "Extracting"
         mkdir ~/adt-bundle
-        mv adt-bundle-linux-x86-20131030.zip ~/adt-bundle/adt_x86.zip
+        mv adt-bundle-linux-x86-20140702.zip ~/adt-bundle/adt_x86.zip
         cd ~/adt-bundle
         unzip adt_x86.zip
-        mv -f adt-bundle-linux-x86_64-20131030/* .
+        mv -f adt-bundle-linux-x86-20140702/* .
         echo "Configuring environment"
         echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
         echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
@@ -239,7 +237,7 @@ clear
 echo
 echo "Installing DSIXDA's Android Kitchen"
 echo
-cd ~/tr-be-script
+cd ~/winter-script
 wget https://github.com/dsixda/Android-Kitchen/archive/master.zip
 unzip master.zip
 mv -f Android-Kitchen-master ~/Android-Kitchen
@@ -259,17 +257,17 @@ clear
 echo
 echo "Cleaning up temporary files..."
 echo
-rm -f ~/tr-be-script/Python-3.3.2.tgz
-sudo rm -rf ~/tr-be-script/Python-3.3.2
-rm -f ~/tr-be-script/make-3.82.tar.gz
-rm -rf ~/tr-be-script/make-3.82
-rm -f ~/tr-be-script/ccache-3.1.9.tar.gz
-rm -rf ~/tr-be-script/ccache-3.1.9
-rm -rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
-rm -rf ~/adt-bundle/adt-bundle-linux-x86-20131030
+rm -f ~/winter-script/Python-3.6.0a2.tgz
+sudo rm -rf ~/winter-script/Python-3.6.0a2
+rm -f ~/winter-script/make-4.2.1.tar.gz
+rm -rf ~/winter-script/make-4.2.1
+rm -f ~/winter-script/ccache-3.2.5.tar.gz
+rm -rf ~/winter-script/ccache-3.2.5
+rm -rf ~/adt-bundle/adt-bundle-linux-x86_64-20140702
+rm -rf ~/adt-bundle/adt-bundle-linux-x86-20140702
 rm -f ~/adt-bundle/adt_x64.zip
 rm -f ~/adt-bundle/adt_x86.zip
-rm -f ~/tr-be-script/master.zip
+rm -f ~/winter-script/master.zip
 
 clear
 
@@ -285,6 +283,9 @@ echo "Credits:"
 echo 
 echo "Script created by:"
 echo "> [T E A M  R A D I U M] <"
+echo
+echo "Updated by:"
+echo "> [W I N T E R R] "
 echo 
 read -p "Press [Enter] key to exit..."
 exit
