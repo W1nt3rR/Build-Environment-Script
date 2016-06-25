@@ -2,11 +2,11 @@
 
 ####  Type in terminal: ####
 ```bash  
-    curl --create-dirs -L -o winter-script.sh -O -L https://raw.github.com/WinterRo/Winter-Script/master/winter-script.sh
+curl --create-dirs -L -o winter-script.sh -O -L https://raw.github.com/WinterRo/Winter-Script/master/winter-script.sh
 ```
 ####  Then: ####
 ```bash  
-    . winter-script.sh
+. winter-script.sh
 ```
 
 ---
