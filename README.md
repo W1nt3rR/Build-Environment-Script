@@ -11,7 +11,7 @@ curl --create-dirs -L -o winter-script.sh -O -L https://raw.github.com/WinterRo/
 
 ---
 
-Original script on xda(OLD):
+Original script on xda:
 
 You can find the script here on XDA: http://forum.xda-developers.com/showthread.php?t=2368833
 
