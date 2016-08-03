@@ -234,6 +234,7 @@ fi
 
 clear
 
+#
 #echo
 #echo "Installing DSIXDA's Android Kitchen"
 #echo
