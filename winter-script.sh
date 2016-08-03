@@ -201,9 +201,9 @@ then
         echo "Configuring environment"
         echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
         echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
-        echo "Placing desktop shortcuts"
-        ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
-        ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
+        #echo "Placing desktop shortcuts"
+        #ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
+        #ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
         echo "Done!!"
 else
 
@@ -220,9 +220,9 @@ else
         echo "Configuring environment"
         echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
         echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
-        echo "Placing desktop shortcuts"
-        ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
-        ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
+        #echo "Placing desktop shortcuts"
+        #ln -s ~/adt-bundle/eclipse/eclipse ~/Desktop/Eclipse
+        #ln -s ~/adt-bundle/sdk/tools/android ~/Desktop/SDK-Manager
         echo "Done!!"
 fi
 
