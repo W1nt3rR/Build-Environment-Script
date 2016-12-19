@@ -37,10 +37,10 @@ clear
 echo
 echo "Entering SCRIPT FILE'S DOWNLOAD Directory"
 echo
-if [ ! -d ~/winter-script ]; then
-  mkdir -p ~/winter-script
+if [ ! -d ~/be-script ]; then
+  mkdir -p ~/be-script
 fi
-cd ~/winter-script
+cd ~/be-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -56,12 +56,12 @@ echo
 sudo apt-get install build-essential gcc $PARAM
 wget http://www.python.org/ftp/python/3.6.0/Python-3.6.0rc2.tgz
 tar -xvzf Python-3.6.0rc2.tgz
-cd ~/winter-script/Python-3.6.0rc2
+cd ~/be-script/Python-3.6.0rc2
 ./configure --prefix=/usr/local/python3.6
 make -j${JOBS}
 sudo make install -j${JOBS}
 sudo ln -s /usr/local/python3.6/bin/python /usr/bin/python3.6
-cd ~/winter-script
+cd ~/be-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -76,13 +76,13 @@ echo "Installing CCache!"
 echo
 wget http://www.samba.org/ftp/ccache/ccache-3.3.tar.gz
 tar -xvzf ccache-3.3.tar.gz
-cd ~/winter-script/ccache-3.3
+cd ~/be-script/ccache-3.3
 ./configure
 make -j${JOBS}
 sudo make install -j${JOBS}
 echo "export USE_CCACHE=1" >> ~/.bashrc
 ccache -M 25G
-cd ~/winter-script
+cd ~/be-script
 
 if [ ${SKIP} = 1 ]; then
   echo "Unattended installation. skipping pause..."
@@ -111,10 +111,10 @@ clear
 echo
 echo "Installing GNU Make!"
 echo
-cd ~/winter-script
+cd ~/be-script
 wget http://ftp.gnu.org/gnu/make/make-4.2.1.tar.gz
 tar -xvzf make-4.2.1.tar.gz
-cd ~/winter-script/make-4.2.1
+cd ~/be-script/make-4.2.1
 ./configure
 sudo make install -j${JOBS}
 cd ~/
@@ -237,7 +237,7 @@ clear
 #echo
 #echo "Installing DSIXDA's Android Kitchen"
 #echo
-#cd ~/winter-script
+#cd ~/be-script
 #wget https://github.com/dsixda/Android-Kitchen/archive/master.zip
 #unzip master.zip
 #mv -f Android-Kitchen-master ~/Android-Kitchen
@@ -257,17 +257,17 @@ clear
 echo
 echo "Cleaning up temporary files..."
 echo
-rm -f ~/winter-script/Python-3.6.0rc2.tgz
-sudo rm -rf ~/winter-script/Python-3.6.0rc2
-rm -f ~/winter-script/make-4.2.1.tar.gz
-rm -rf ~/winter-script/make-4.2.1
-rm -f ~/winter-script/ccache-3.3.tar.gz
-rm -rf ~/winter-script/ccache-3.3
+rm -f ~/be-script/Python-3.6.0rc2.tgz
+sudo rm -rf ~/be-script/Python-3.6.0rc2
+rm -f ~/be-script/make-4.2.1.tar.gz
+rm -rf ~/be-script/make-4.2.1
+rm -f ~/be-script/ccache-3.3.tar.gz
+rm -rf ~/be-script/ccache-3.3
 rm -rf ~/adt-bundle/adt-bundle-linux-x86_64-20140702
 rm -rf ~/adt-bundle/adt-bundle-linux-x86-20140702
 rm -f ~/adt-bundle/adt_x64.zip
 rm -f ~/adt-bundle/adt_x86.zip
-rm -f ~/winter-script/master.zip
+rm -f ~/be-script/master.zip
 
 clear
 
