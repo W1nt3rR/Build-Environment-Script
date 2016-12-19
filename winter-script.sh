@@ -54,9 +54,9 @@ echo
 echo "Installing Python!"
 echo
 sudo apt-get install build-essential gcc $PARAM
-wget http://www.python.org/ftp/python/3.6.0/Python-3.6.0a3.tgz
-tar -xvzf Python-3.6.0a3.tgz
-cd ~/winter-script/Python-3.6.0a3
+wget http://www.python.org/ftp/python/3.6.0/Python-3.6.0rc2.tgz
+tar -xvzf Python-3.6.0rc2.tgz
+cd ~/winter-script/Python-3.6.0rc2
 ./configure --prefix=/usr/local/python3.6
 make -j${JOBS}
 sudo make install -j${JOBS}
@@ -74,9 +74,9 @@ clear
 echo
 echo "Installing CCache!"
 echo
-wget http://www.samba.org/ftp/ccache/ccache-3.2.7.tar.gz
-tar -xvzf ccache-3.2.7.tar.gz
-cd ~/winter-script/ccache-3.2.7
+wget http://www.samba.org/ftp/ccache/ccache-3.3.tar.gz
+tar -xvzf ccache-3.3.tar.gz
+cd ~/winter-script/ccache-3.3
 ./configure
 make -j${JOBS}
 sudo make install -j${JOBS}
@@ -257,12 +257,12 @@ clear
 echo
 echo "Cleaning up temporary files..."
 echo
-rm -f ~/winter-script/Python-3.6.0a3.tgz
-sudo rm -rf ~/winter-script/Python-3.6.0a3
+rm -f ~/winter-script/Python-3.6.0rc2.tgz
+sudo rm -rf ~/winter-script/Python-3.6.0rc2
 rm -f ~/winter-script/make-4.2.1.tar.gz
 rm -rf ~/winter-script/make-4.2.1
-rm -f ~/winter-script/ccache-3.2.7.tar.gz
-rm -rf ~/winter-script/ccache-3.2.7
+rm -f ~/winter-script/ccache-3.3.tar.gz
+rm -rf ~/winter-script/ccache-3.3
 rm -rf ~/adt-bundle/adt-bundle-linux-x86_64-20140702
 rm -rf ~/adt-bundle/adt-bundle-linux-x86-20140702
 rm -f ~/adt-bundle/adt_x64.zip
@@ -285,7 +285,7 @@ echo "Script created by:"
 echo "> [T E A M  R A D I U M] <"
 echo
 echo "Updated by:"
-echo "> [W I N T E R R] "
+echo "> [W i n t e r R] "
 echo 
 read -p "Press [Enter] key to exit..."
 exit
