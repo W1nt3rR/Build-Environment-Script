@@ -2,7 +2,7 @@
 
 ####  Type in terminal: ####
 ```bash  
-curl --create-dirs -L -o be-script.sh -O -L https://raw.github.com/W1nt3rR/Build Environment Script/Linux/be-script.sh
+curl --create-dirs -L -o be-script.sh -O -L https://raw.github.com/W1nt3rR/Build-Environment-Script/Linux/be-script.sh
 ```
 ####  Then: ####
 ```bash  
